@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-require("./db/index");
+require("./database/index");
 require("dotenv").config();
 const port = process.env.port;
 /*body parser */
@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 /*routes */
-// require("./routes/auth")(app);
+require("./routes/oauth_routes")(app);
 // require("./routes/customer")(app);
 // require("./routes/product")(app);
 // require("./routes/order")(app);
