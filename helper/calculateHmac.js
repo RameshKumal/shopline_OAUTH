@@ -13,6 +13,7 @@ const calculatedHmac = (data) => {
     .update(message)
     .digest("hex");
 
+    console.log(calculatedHmac);
   return calculated_hmac;
 };
 

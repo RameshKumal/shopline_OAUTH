@@ -6,26 +6,22 @@ const scope = process.env.scope;
 
 const accessToken = async (code, handle, sign, timestamp) => {
   try {
-    if (code && handle) {
-      const accessTokenRequestUrl = `https://${handle}.myshopline.com/admin/oauth/token/create`;
-      const data = await axios.post(
-        accessTokenRequestUrl,
-        {
-          body: `${code}`,
+    const accessTokenRequestUrl = `https://${handle}.myshopline.com/admin/oauth/token/create`;
+    const data = await axios.post(
+      accessTokenRequestUrl,
+      {
+        code,
+      },
+      {
+        headers: {
+          sign,
+          appKey,
+          timestamp,
         },
-        {
-          headers: {
-            appKey: `${appKey}`,
-            sign: sign,
-            timestamp: timestamp,
-          },
-        }
-      );
-      console.log(data);
-      return data;
-    } else {
-      console.error("code or shop is undefined.");
-    }
+      }
+    );
+    console.log(data);
+    return data;
   } catch (err) {
     console.error(err);
   }
